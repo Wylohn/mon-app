@@ -1,4 +1,5 @@
 import { useState } from "react"
+import {generateUniqueID} from 'web-vitals/dist/modules/lib/generateUniqueID'
 
 export default function Form ({setCards}) {
 
@@ -6,24 +7,23 @@ export default function Form ({setCards}) {
     const [formContent, setFormContent] = useState('');
 
     const handleTitleChange = e => {
-        console.log(e.target.value);
         setFormTitle(e.target.value);
     }
 
     const handleContentChange = e => {
-        console.log(e.target.value);
         setFormContent(e.target.value);
     }
 
     const handleSubmit = event => {
         event.preventDefault();
-        setCards(previousState => [...previousState, {title: formTitle, content: formContent}])
+        let cardId = generateUniqueID()
+        setCards(previousState => [...previousState, {id: cardId, title: formTitle, content: formContent}])
     }
 
     return (
         <form className="m-5 mx-auto" style={{maxWidth: '450px'}} onSubmit={handleSubmit}>
             <div className="mb-3">
-                <label htmlFor="exampleInputEmail" className="form-label">Titre</label>
+                <label htmlFor="exampleInputTitle" className="form-label">Titre</label>
                 <input type="title" className="form-control" id="exampleInputTitle" aria-describedby="titleHelp" onChange={handleTitleChange}/>
                     
             </div>

@@ -9,18 +9,17 @@ export default function App() {
 
     const [cards, setCards] = useState(CardList);
 
-  return (
+return (
 
     <>
         <Form setCards={setCards}/>
     <div className="row row-cols-2 row-cols-md-4 g-2 p-5">
     {cards.map(
         (card) => (
-            <Card title={card.title} content={card.content} key={card.id}/>
-            
+            <Card title={card.title} content={card.content} key={card.id} card={cards} setCards={setCards} id={card.id}/>
         )
     )}
     </div>
     </>
-  )
+)
 }
