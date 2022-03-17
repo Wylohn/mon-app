@@ -23,7 +23,6 @@ export default function Card({id, title, content, card, setCards, isCompleted}) 
         });
         
         setCards(completeCardList)
-        console.log(completeCardList)
     }
 
     return (
