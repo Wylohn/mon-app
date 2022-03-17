@@ -1,7 +1,7 @@
 import { useState } from "react"
 import {generateUniqueID} from 'web-vitals/dist/modules/lib/generateUniqueID'
 
-export default function Form ({setCards}) {
+export default function Form ({setCards, limit}) {
 
     const [formTitle, setFormTitle] = useState('');
     const [formContent, setFormContent] = useState('');
@@ -16,8 +16,17 @@ export default function Form ({setCards}) {
 
     const handleSubmit = event => {
         event.preventDefault();
-        let cardId = generateUniqueID()
-        setCards(previousState => [...previousState, {id: cardId, title: formTitle, content: formContent}])
+        const newCard = {
+            id: generateUniqueID(),
+            title: formTitle,
+            content: formContent,
+            isCompleted: false
+        };
+        if (limit === false) {
+            setCards(previousState => [...previousState, newCard])
+        } else {
+            document.getElementById('addCard').onclick = () => { alert("EUUUH NIK TAM AIR");}
+        }
     }
 
     return (
@@ -31,7 +40,7 @@ export default function Form ({setCards}) {
             <label htmlFor="exampleInputContent" className="form-label">Contenu</label>
                 <input type="content" className="form-control" id="exampleInputContent" aria-describedby="contentHelp" onChange={handleContentChange}/>
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" id="addCard" className="btn btn-primary">Submit</button>
         </form>
     )
 }
