@@ -25,7 +25,7 @@ export default function Form ({setCards, limit}) {
         if (limit === false) {
             setCards(previousState => [...previousState, newCard])
         } else {
-            document.getElementById('addCard').onclick = () => { alert("EUUUH NIK TAM AIR");}
+            window.alert("EUUUH NIK TAM AIR");
         }
     }
 
@@ -40,7 +40,7 @@ export default function Form ({setCards, limit}) {
             <label htmlFor="exampleInputContent" className="form-label">Contenu</label>
                 <input type="content" className="form-control" id="exampleInputContent" aria-describedby="contentHelp" onChange={handleContentChange}/>
             </div>
-            <button type="submit" id="addCard" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Submit</button>
         </form>
     )
 }
